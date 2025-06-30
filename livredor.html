@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livre d'or</title>
+    <link rel="stylesheet" href="livredor.css">
+    <link rel="stylesheet" href="style-common.css">
+    <link rel="stylesheet" href="stylel.css" media="screen and (min-width: 1201px)">
+    <link rel="stylesheet" href="styleh.css" media="screen and (max-width: 1200px)">
+</head>
+
+
+<body bgcolor="#3f4b04" text="#89a96d">
+
+    <form id="commentForm">
+        <label>Nom :</label>
+        <input type="text" name="nom" value="" size="20">
+        
+        <label>Email :</label>
+        <input type="text" name="email" value="" size="40">
+
+        <label>URL :</label>
+        <input type="text" name="pageweb" size="40">
+
+        <label for="comment">Commentaires :</label>
+        <textarea name="comment" id="comment" cols="50" rows="10" wrap="virtual"></textarea>
+
+        <input type="reset" name="reset" value="Effacer">
+        <input type="button" name="submit" value="OK" onclick="storeComment()">
+    </form>
+
+    <div id="livre-dor">
+        <b>Mon livre d'or <br>
+        Merci pour tous vos commentaires ;o)</b>
+        <ul id="commentList"></ul>
+    </div>
+
+    <script>
+        function storeComment() {
+            const commentForm = document.getElementById('commentForm');
+            const commentList = document.getElementById('commentList');
+
+            const commentData = {
+                nom: commentForm.nom.value,
+                email: commentForm.email.value,
+                pageweb: commentForm.pageweb.value,
+                comment: commentForm.comment.value
+            };
+
+            // Récupérer les commentaires précédents depuis le stockage local
+            let comments = JSON.parse(localStorage.getItem('comments')) || [];
+
+            // Ajouter le nouveau commentaire à la liste
+            comments.push(commentData);
+
+            // Stocker la liste mise à jour dans le stockage local
+            localStorage.setItem('comments', JSON.stringify(comments));
+
+            // Afficher les commentaires
+            displayComments();
+        }
+
+        function displayComments() {
+            const commentList = document.getElementById('commentList');
+            commentList.innerHTML = '';
+
+            // Récupérer les commentaires depuis le stockage local
+            const comments = JSON.parse(localStorage.getItem('comments')) || [];
+
+            // Afficher les commentaires dans la liste
+            comments.forEach(comment => {
+                const listItem = document.createElement('li');
+                listItem.innerHTML = `<strong>${comment.nom}</strong> (${comment.email}): ${comment.comment}`;
+                commentList.appendChild(listItem);
+            });
+        }
+
+        // Afficher les commentaires existants lors du chargement de la page
+        displayComments();
+    </script>
+
+</body>
+</html>

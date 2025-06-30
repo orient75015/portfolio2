@@ -1,0 +1,75 @@
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #3f4b04;
+}
+
+main {
+    padding: 20px;
+}
+
+.skills {
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.card {
+    width: 30%;
+    background-color: #89a96d;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px #3f4b04(0, 0, 0, 0.1);
+}
+
+.card h3 {
+    color: #333;
+    text-align: center;
+}
+
+.card ul {
+    list-style: none;
+    padding: 0;
+}
+
+.card li {
+    margin-bottom: 15px;
+}
+
+.card li::before {
+    content: '\2022'; /* Utilisation du caractère de puce Unicode pour les puces */
+    color: #3f4b04; /* Couleur de la puce */
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+}
+
+.card .content-text {
+    text-align: left;
+}
+
+.card hr {
+    border: 1px solid #333;
+    margin: 10px 0;
+}
+
+.card button {
+    background-color: #3f4b04;
+    color: #89a96d
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.card a {
+    text-decoration: none;
+    color: #89a96d;
+}
